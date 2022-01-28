@@ -40,6 +40,16 @@ function NotesProvider({ children }) {
     setNotes(noArchivedNotes)
   }, [])
 
+  const publishNote = useCallback((note) => {
+    console.log(notes)
+    const storedNotes = storage.get('Notes') || []
+    const noArchivedNotes = storedNotes.map((item) =>
+      item.id == note.id ? { ...note, archived: false } : item
+    )
+    storage.set('Notes', noArchivedNotes)
+    setNotes(noArchivedNotes)
+  }, [])
+
   const editNote = useCallback((note) => {
     console.log(notes)
     const editedNotes = notes.map((item) => (item.id !== note.id ? item : note))
@@ -56,6 +66,7 @@ function NotesProvider({ children }) {
         addNote,
         editNote,
         archiveNote,
+        publishNote,
       }}
     >
       {children}

@@ -9,8 +9,11 @@ import {
 } from './Navbar.styled'
 
 import { useAuth } from '../../Providers/User/User.provider'
+import { useNotes } from '../../Providers/Notes'
+
 function Navbar() {
-  const { authenticated, logout, setSearchParams, searchParam } = useAuth()
+  const { authenticated, logout } = useAuth()
+  const { setSearchParams, searchParam } = useNotes()
 
   return (
     <>

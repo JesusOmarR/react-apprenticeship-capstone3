@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   NotesContainer,
   MainContainer,
   CreateNoteContainer,
 } from './MainPage.styled'
 import { useNotes } from '../../Providers/Notes'
-import Notes from '../../Components/Notes'
+const Notes = React.lazy(() => import('../../Components/Notes'))
 import { v4 as uuid } from 'uuid'
 
 function MainPage() {
-  const { notes, addNote } = useNotes()
+  const { notes, addNote, searchParam } = useNotes()
 
   const [note, setNote] = useState({
     color: 'white',
@@ -17,7 +17,21 @@ function MainPage() {
     archived: false,
   })
 
+  const [publishNote, setPublishNotes] = useState([])
+  const [noFoundMsg, setNoFoundMsg] = useState(null)
   const { text } = note
+
+  useEffect(() => {
+    const searchedNotes = notes.filter(
+      (n) => n.text.includes(searchParam) && !n.archived
+    )
+    setPublishNotes(searchedNotes)
+    if (!searchedNotes.length > 0 && searchParam.length > 0) {
+      setNoFoundMsg('No hay')
+      return
+    }
+    setNoFoundMsg(null)
+  }, [searchParam, notes])
 
   const onCreateNote = () => {
     if (!text) {
@@ -70,20 +84,21 @@ function MainPage() {
       </CreateNoteContainer>
 
       <NotesContainer>
-        {notes.length > 0 ? (
-          notes
-            .filter((n) => n.archived === false)
-            .map((note) => (
+        <React.Suspense fallback={<div>...loading</div>}>
+          {publishNote.length > 0 ? (
+            publishNote.map((note) => (
               <div key={note.id}>
                 <Notes note={note} />
               </div>
             ))
-        ) : (
-          <div className="advice-container">
-            There are no notes; please create a new one using the creation note
-            input
-          </div>
-        )}
+          ) : (
+            <div className="advice-container">
+              {noFoundMsg
+                ? noFoundMsg
+                : 'There are no notes; please create a new one using the creationnote input'}
+            </div>
+          )}
+        </React.Suspense>
       </NotesContainer>
     </MainContainer>
   )

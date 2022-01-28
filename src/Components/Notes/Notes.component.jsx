@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { NotesDiv } from './NotesComponent.styled'
-import EditNotes from './Modals/EditNotes.modal'
+const EditNotes = React.lazy(() => import('./Modals/EditNotes.modal'))
 import { useNotes } from '../../Providers/Notes'
 
 function NotesComponent({ note }) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const { archiveNote } = useNotes()
+  const { archiveNote, publishNote } = useNotes()
 
   const onClose = () => {
     setIsOpen(false)
@@ -15,6 +15,11 @@ function NotesComponent({ note }) {
   const onClickArchive = (e) => {
     e.preventDefault()
     archiveNote(note)
+  }
+
+  const onClickPublish = (e) => {
+    e.preventDefault()
+    publishNote(note)
   }
 
   return (
@@ -27,7 +32,7 @@ function NotesComponent({ note }) {
             {!note.archived ? (
               <button onClick={onClickArchive}>archivar</button>
             ) : (
-              <button onClick={onClickArchive}>regresar</button>
+              <button onClick={onClickPublish}>regresar</button>
             )}
             <button onClick={() => setIsOpen(true)}>editar</button>fondo
           </div>
