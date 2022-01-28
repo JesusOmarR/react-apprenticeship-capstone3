@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const MainContainer = styled.div`
+export const ArchivesContainer = styled.div`
   display: flex;
   position: relative;
   z-index: 1;
@@ -26,27 +26,5 @@ export const NotesContainer = styled.div`
     margin: 0 auto;
     justify-content: center;
     justify-text: center;
-  }
-`
-export const CreateNoteContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 2rem auto;
-
-  .options-create {
-  }
-
-  input {
-    margin: 0 auto;
-    padding: 0.5rem;
-    width: 20vw;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 1px 2px 1px 2px rgba(0, 0, 0, 0.2);
-    :focus {
-      outline: none;
-      border: none;
-      backgroun-color: red;
-    }
   }
 `

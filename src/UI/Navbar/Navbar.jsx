@@ -10,7 +10,7 @@ import {
 
 import { useAuth } from '../../Providers/User/User.provider'
 function Navbar() {
-  const { authenticated, logout } = useAuth()
+  const { authenticated, logout, setSearchParams, searchParam } = useAuth()
 
   return (
     <>
@@ -18,7 +18,10 @@ function Navbar() {
         <NavLink to="/"></NavLink>
         <Bars />
         <NavMenu>
-          <input />
+          <input
+            onChange={(e) => setSearchParams(e.target.value)}
+            value={searchParam}
+          />
           <NavLink to="/" activeStyle>
             Home
           </NavLink>

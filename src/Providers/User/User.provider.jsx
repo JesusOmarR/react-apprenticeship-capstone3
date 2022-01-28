@@ -14,7 +14,9 @@ function useAuth() {
 
 // eslint-disable-next-line react/prop-types
 function AuthProvider({ children }) {
-  const [authenticated, setAuthenticated] = useState(false)
+  const [authenticated, setAuthenticated] = useState(
+    Boolean(storage.get('isAuth'))
+  )
   const [currentUser, setCurrentUser] = useState(null)
 
   useEffect(() => {
@@ -40,7 +42,14 @@ function AuthProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ login, logout, authenticated, currentUser }}>
+    <AuthContext.Provider
+      value={{
+        login,
+        logout,
+        authenticated,
+        currentUser,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )

@@ -1,10 +1,9 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Login from '../Pages/Login'
-import Archies from '../Pages/Archives/Archives.page'
+import Archives from '../Pages/Archives/Archives.page'
 import MainPage from '../Pages/MainPage'
 import Navbar from '../UI/Navbar'
 import Private from '../Components/Private/Private.component'
-
 import UserProvider from '../Providers/User/User.provider'
 import NotesProvider from '../Providers/Notes/Notes.provider'
 
@@ -19,7 +18,7 @@ function App() {
               <MainPage />
             </Private>
             <Private exact path="/archives">
-              <Archies />
+              <Archives />
             </Private>
             <Route exact path="/login">
               <Login />
