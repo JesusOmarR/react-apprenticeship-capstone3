@@ -22,7 +22,24 @@ export const NotesDiv = styled.div`
 
   :hover {
     .options {
-      display: block;
+      display: flex;
     }
   }
+
+  img {
+    width: 1.2rem;
+    padding: 0.5rem;
+
+    :hover {
+      background-color: #d3d3d3;
+
+      border-radius: 14px;
+    }
+  }
+`
+
+export const ColorSelect = styled.div`
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
 `

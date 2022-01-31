@@ -32,14 +32,33 @@ export const CreateNoteContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 2rem auto;
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 
   .options-create {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  button {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+
+    height: fit-content;
+    padding: 0.5rem 1rem;
+
+    :hover {
+      background-color: #87cefa;
+      color: white;
+    }
   }
 
   input {
-    margin: 0 auto;
+    margin: 0;
     padding: 0.5rem;
-    width: 20vw;
+    width: 20rem;
     border-radius: 5px;
     border: none;
     box-shadow: 1px 2px 1px 2px rgba(0, 0, 0, 0.2);

@@ -1,17 +1,6 @@
 import React, { useState } from 'react'
-import { ModalContent } from './EditNotes.styled'
+import { ModalContent, Modal } from './EditNotes.styled'
 import { useNotes } from '../../../Providers/Notes'
-
-const MODAL_STYLES = {
-  position: 'fixed',
-  top: '40%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  backgroundColor: '#FFF',
-  padding: '10px',
-  zIndex: 1000,
-  borderRadius: '7px',
-}
 
 const OVERLAY_STYLES = {
   position: 'fixed',
@@ -47,7 +36,7 @@ function EditNotes({ onClose, open, data }) {
   return (
     <>
       <div style={OVERLAY_STYLES} />
-      <div style={MODAL_STYLES}>
+      <Modal>
         <ModalContent>
           <textarea
             value={editedNote.text}
@@ -55,13 +44,20 @@ function EditNotes({ onClose, open, data }) {
             onChange={onEditInputs}
             rows="5"
             cols="50"
+            role="text-area"
           >
             Write something here
           </textarea>
-          <button onClick={onSave}>save</button>
-          <button onClick={onClose}>Close Modal</button>
+          <div className="buttons-container">
+            <button className="btn save-btn" onClick={onSave} role="save">
+              save
+            </button>
+            <button onClick={onClose} className="btn close-btn">
+              Close Modal
+            </button>
+          </div>
         </ModalContent>
-      </div>
+      </Modal>
     </>
   )
 }

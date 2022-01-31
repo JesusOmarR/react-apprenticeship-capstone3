@@ -6,7 +6,7 @@ export const NotesContext = React.createContext(null)
 function useNotes() {
   const context = useContext(NotesContext)
   if (!context) {
-    throw new Error(`Can't use "useAuth" without an AuthProvider!`)
+    throw new Error(`Can't use "useNotes" without an AuthProvider!`)
   }
   return context
 }
@@ -22,16 +22,13 @@ function NotesProvider({ children }) {
   }, [])
 
   const addNote = useCallback((note) => {
-    console.log(note)
     const storedNotes = storage.get('Notes') || []
     storedNotes.push(note)
     storage.set('Notes', storedNotes)
-    console.log(storedNotes)
     setNotes(storedNotes)
   }, [])
 
   const archiveNote = useCallback((note) => {
-    console.log(notes)
     const storedNotes = storage.get('Notes') || []
     const noArchivedNotes = storedNotes.map((item) =>
       item.id == note.id ? { ...note, archived: true } : item
@@ -41,7 +38,6 @@ function NotesProvider({ children }) {
   }, [])
 
   const publishNote = useCallback((note) => {
-    console.log(notes)
     const storedNotes = storage.get('Notes') || []
     const noArchivedNotes = storedNotes.map((item) =>
       item.id == note.id ? { ...note, archived: false } : item
@@ -51,7 +47,6 @@ function NotesProvider({ children }) {
   }, [])
 
   const editNote = useCallback((note) => {
-    console.log(notes)
     const editedNotes = notes.map((item) => (item.id !== note.id ? item : note))
     storage.set('Notes', editedNotes)
     setNotes(editedNotes)

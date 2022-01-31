@@ -34,9 +34,7 @@ function Login() {
         password
       )
       login(user.email)
-      console.log(user)
     } catch (error) {
-      console.log(error.message)
       setLoginError(true)
       setTimeout(() => {
         setLoginError(false)
