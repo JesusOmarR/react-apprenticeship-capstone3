@@ -1,11 +1,13 @@
 import React from 'react'
+import { NotFoundContainer } from './NoteFound.styled'
 
 const NotFound = () => {
   return (
-    <div>
-      Looks like you are lost space cowboy, what about go back and see whats
-      going on
-    </div>
+    <NotFoundContainer>
+      Looks like you are lost space cowboy, what about <a href="/"> go back </a>{' '}
+      and see whats going on
+      <h1>404</h1>
+    </NotFoundContainer>
   )
 }
 

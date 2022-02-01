@@ -29,7 +29,7 @@ function MainPage() {
     )
     setPublishNotes(searchedNotes)
     if (!searchedNotes.length > 0 && searchParam.length > 0) {
-      setNoFoundMsg('No hay')
+      setNoFoundMsg('There are no match results. Try another search.')
       return
     }
     setNoFoundMsg(null)

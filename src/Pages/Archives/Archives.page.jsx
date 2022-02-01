@@ -22,8 +22,7 @@ function Archives() {
             ))
           ) : (
             <div className="advice-container">
-              There are no notes; please create a new one using the creation
-              note input
+              You don&apos;t have archived notes.
             </div>
           )}
         </React.Suspense>
