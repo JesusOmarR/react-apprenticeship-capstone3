@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+check_run() {
+    if echo "$changed_files" | grep -q "$1"; then
+        echo "📦 package.json changed"
+        echo "installin dependencies"
+        eval "$2"
+    else
+        echo "Not found any diff in $1"
+    fi
+}
+check_run package.json "npm install && npm prune"
